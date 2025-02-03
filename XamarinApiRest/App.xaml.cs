@@ -30,7 +30,7 @@ namespace XamarinApiRest
 
             ConfigureServices();
 
-            MainPage = new MainPage(Mediator);
+            MainPage = new NavigationPage(new MainPage(Mediator));
         }
 
         private void ConfigureServices()

@@ -4,27 +4,43 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using XamarinApiRest.Features.Queries;
 using XamarinApiRest.Models;
-using XamarinApiRest.Views;
 
-namespace XamarinApiRest
+namespace XamarinApiRest.Views
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class UserPostsPage : ContentPage
     {
         private readonly IMediator _mediator;
+        private int _userId;
         public ObservableCollection<Post> Posts { get; set; }
         public ObservableCollection<Post> FilteredPosts { get; set; }
-        public string SearchQuery { get; set; }
-        public ICommand SearchCommand { get; set; }
-        public MainPage(IMediator mediator)
+        private string _searchQuery;
+        public string SearchQuery
         {
-            InitializeComponent();
+            get => _searchQuery;
+            set
+            {
+                if (_searchQuery != value)
+                {
+                    _searchQuery = value;
+                    OnPropertyChanged();
+                    OnSearch();
+                }
+            }
+        }
+
+        public ICommand SearchCommand { get; set; }
+        public UserPostsPage(int userId, IMediator mediator)
+        {
             _mediator = mediator;
-            BindingContext = this;
+            InitializeComponent();
             Posts = new ObservableCollection<Post>();
             FilteredPosts = new ObservableCollection<Post>();
             SearchCommand = new Command(OnSearch);
+            _userId = userId;
             LoadPosts();
         }
 
@@ -38,6 +54,8 @@ namespace XamarinApiRest
                     Posts.Add(post);
                     FilteredPosts.Add(post);
                 }
+
+                PostsListView.ItemsSource = FilteredPosts.Where(t => t.UserId == _userId);
             }
             catch (Exception ex)
             {
@@ -63,6 +81,17 @@ namespace XamarinApiRest
                     FilteredPosts.Add(post);
                 }
             }
+            PostsListView.ItemsSource = FilteredPosts;
+        }
+
+        private async void ViewDetailsButton_Clicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var user = button?.BindingContext as User;
+            if (user != null)
+            {
+                //await Navigation.PushAsync(new UserDetailsPage(user));
+            }
         }
 
         private async void PostsListView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -70,9 +99,10 @@ namespace XamarinApiRest
             var post = e.Item as Post;
             if (post != null)
             {
-                DetailPage detailPage = new DetailPage(post);
+                PostDetailPage detailPage = new PostDetailPage(post, _mediator);
                 await Navigation.PushAsync(detailPage);
             }
         }
+
     }
 }

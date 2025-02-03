@@ -5,12 +5,12 @@ using XamarinApiRest.Models;
 namespace XamarinApiRest.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DetailPage : ContentPage // Change this line
+    public partial class UserDetailsPage : ContentPage
     {
-        public DetailPage(Post post)
+        public UserDetailsPage(User user)
         {
             InitializeComponent();
-            BindingContext = post;
+            BindingContext = user;
         }
     }
 }

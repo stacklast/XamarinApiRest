@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApiRest.Views.UserDetailsPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Datos del Usuario" 
+               FontSize="Title" 
+               HorizontalOptions="CenterAndExpand" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Nombre:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" />
+                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" />
+
+                <Label Text="Username:" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" />
+                <Label Text="{Binding Username}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" />
+
+                <Label Text="Email:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" />
+                <Label Text="{Binding Email}" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" />
+
+                <Label Text="Dirección:" Grid.Row="3" Grid.Column="0" VerticalOptions="Center" />
+                <Label Text="{Binding Address.Street}" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" />
+
+                <Label Text="{Binding Address.City}" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
+
+                <Label Text="Teléfono:" Grid.Row="5" Grid.Column="0" VerticalOptions="Center" />
+                <Label Text="{Binding Phone}" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" />
+
+                <Label Text="Website:" Grid.Row="6" Grid.Column="0" VerticalOptions="Center" />
+                <Label Text="{Binding Website}" Grid.Row="6" Grid.Column="1" VerticalOptions="Center" />
+
+                <Label Text="Compañía:" Grid.Row="7" Grid.Column="0" VerticalOptions="Center" />
+                <Label Text="{Binding Company.Name}" Grid.Row="7" Grid.Column="1" VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

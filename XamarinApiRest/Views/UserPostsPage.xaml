@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApiRest.Views.UserPostsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Detalle del Post" 
+               FontSize="Title" 
+               HorizontalOptions="CenterAndExpand" />
+            <!-- SearchBar para la búsqueda filtrada -->
+            <SearchBar Placeholder="Buscar posts..."
+               Text="{Binding SearchQuery}"
+               SearchCommand="{Binding SearchCommand}" />
+            <ListView HasUnevenRows="True" x:Name="PostsListView" ItemTapped="PostsListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" />
+                                <Label Text="{Binding Body}" FontSize="Small" LineBreakMode="WordWrap" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

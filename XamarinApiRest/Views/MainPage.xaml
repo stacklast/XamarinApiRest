@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApiRest.MainPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="App Usuarios y Posts" 
+               FontSize="Title" 
+               HorizontalOptions="CenterAndExpand" />
+            <Label Text="https://jsonplaceholder.typicode.com/" 
+               FontSize="Small" 
+               HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="UsersListView" ItemTapped="UsersListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5">
+                                <!-- Definir las ColumnDefinitions -->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Nombre del Usuario en la primera columna -->
+                                <Label Text="{Binding Name}" VerticalOptions="Center" Grid.Column="0" />
+
+                                <!-- Botón Ver Posts en la segunda columna -->
+                                <Button Text="Ver Posts" BackgroundColor="Chocolate" Clicked="ViewPostsButton_Clicked" CommandParameter="{Binding Id}" Grid.Column="1" />
+
+                                <!-- Botón Ver Detalles en la tercera columna -->
+                                <Button Text="Ver Detalles" BackgroundColor="Blue" Clicked="ViewDetailsButton_Clicked" CommandParameter="{Binding .}" Grid.Column="2" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
