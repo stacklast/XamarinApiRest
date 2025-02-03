@@ -8,7 +8,7 @@
                FontSize="Title" 
                HorizontalOptions="CenterAndExpand" />
             <!-- SearchBar para la búsqueda filtrada -->
-            <SearchBar Placeholder="Buscar posts..."
+            <SearchBar Placeholder="Buscar posts por titulo..."
                Text="{Binding SearchQuery}"
                SearchCommand="{Binding SearchCommand}" />
             <ListView HasUnevenRows="True" x:Name="PostsListView" ItemTapped="PostsListView_ItemTapped">

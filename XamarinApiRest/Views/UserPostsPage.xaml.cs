@@ -42,6 +42,7 @@ namespace XamarinApiRest.Views
             SearchCommand = new Command(OnSearch);
             _userId = userId;
             LoadPosts();
+            BindingContext = this;
         }
 
         private async void LoadPosts()
@@ -84,15 +85,6 @@ namespace XamarinApiRest.Views
             PostsListView.ItemsSource = FilteredPosts;
         }
 
-        private async void ViewDetailsButton_Clicked(object sender, EventArgs e)
-        {
-            var button = sender as Button;
-            var user = button?.BindingContext as User;
-            if (user != null)
-            {
-                //await Navigation.PushAsync(new UserDetailsPage(user));
-            }
-        }
 
         private async void PostsListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
