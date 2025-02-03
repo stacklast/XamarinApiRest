@@ -70,9 +70,18 @@ namespace XamarinApiRest
             }
         }
 
-        private void UsersListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void UsersListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            // No need to handle item tapped
+            var button = sender as Button;
+            var user = button?.CommandParameter as User;
+            if (user != null)
+            {
+                var currentPage = Navigation.NavigationStack.LastOrDefault();
+                if (currentPage != null)
+                {
+                    await NavigationService.NavigateWithAnimation(currentPage, new UserDetailsPage(user));
+                }
+            }
         }
     }
 }
